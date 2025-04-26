@@ -2,7 +2,6 @@
 
 @layer base {
   body {
-    @apply 
     @apply text-white;
     @apply font-mono;
   }

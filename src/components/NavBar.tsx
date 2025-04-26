@@ -1,24 +1,26 @@
-import React from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
     <nav className="bg-gray-800 text-white px-6 py-4 shadow-md flex items-center justify-between top-0">
-      <h1 className="text-xl font-semibold"> UOG Classfind</h1>
+      <Link to="/" className="rounded-md px-0.5 text-xl font-semibold">
+        UOG Classfind
+      </Link>
       <ul className="flex gap-4">
         <li>
-          <a href="#" className="hover:bg-gray-700 px-1.5 py-1 rounded-md">
+          <Link to="/" className="hover:bg-gray-700 px-1.5 py-1 rounded-md">
             Home
-          </a>
+          </Link>
         </li>
         <li>
-          <a href="#" className="hover:bg-gray-700 px-1.5 py-1 rounded-md">
+          <Link to="/map" className="hover:bg-gray-700 px-1.5 py-1 rounded-md">
             Map
-          </a>
+          </Link>
         </li>
         <li>
-          <a href="#" className="hover:bg-gray-700 px-1.5 py-1 rounded-md">
+          <Link to="#" className="hover:bg-gray-700 px-1.5 py-1 rounded-md">
             Floor Plans
-          </a>
+          </Link>
         </li>
       </ul>
     </nav>
