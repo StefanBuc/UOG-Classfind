@@ -16,8 +16,6 @@ const SearchBar = () => {
       clickedRoom !== room
   );
 
-  console.log(rooms);
-
   return (
     <div className="w-full max-w-xl mx-auto mt-50 px-4 text-gray-600">
       <input
