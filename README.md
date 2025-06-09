@@ -15,6 +15,7 @@ A web application for the University of Guelph campus that allows students to se
 ## Screenshots
 <img src="./screenshots/HomepageScreenShot.png" alt="Homepage" width="600"/>
 <img src="./screenshots/MapViewScreenShot.png" alt="Map View" width="600"/>
+<img src="./screenshots/MapViewRouteScreenShot.png" alt="Map View with Route" width="600"/>
 
 ## Technologies Used
 
