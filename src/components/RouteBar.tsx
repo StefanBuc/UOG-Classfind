@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { LocateIcon } from "lucide-react";
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 interface RouteBarProps {
   onRouteChange: (from: string, to: string) => void;
@@ -9,6 +11,17 @@ interface RouteBarProps {
 const RouteBar = ({ onRouteChange, onLiveLocation }: RouteBarProps) => {
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const searchTerm = params.get("search");
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const searchTerm = params.get("search");
+    if (searchTerm) {
+      setTo(searchTerm);
+    }
+  }, []);
 
   const handleRoute = () => {
     if (from && to) {

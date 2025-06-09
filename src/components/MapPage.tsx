@@ -1,8 +1,9 @@
 import RouteBar from "./RouteBar";
 import { useState, useEffect } from "react";
-import { MapContainer, TileLayer, Marker, useMap } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import "leaflet-routing-machine";
 import L from "leaflet";
+import { useLocation } from "react-router-dom";
 
 interface Coordinate {
   lat: number;
@@ -11,13 +12,24 @@ interface Coordinate {
 
 const buildingCoordinates: Record<string, { lat: number; lng: number }> = {
   MCKN: { lat: 43.532677, lng: -80.227345 },
-  ROZH: { lat: 43.53189, lng: -80.227614 },
+  ROZH: { lat: 43.53213354061019, lng: -80.22600666737355 },
   UC: { lat: 43.530392, lng: -80.226548 },
   THRN: { lat: 43.530619, lng: -80.225271 },
   RICHARDS: { lat: 43.531485, lng: -80.225411 },
   LIBRARY: { lat: 43.531401, lng: -80.227811 },
   SUMMERLEE: { lat: 43.530232, lng: -80.228482 },
   ALEX: { lat: 43.529194, lng: -80.227793 },
+  LANG: { lat: 43.53411897187291, lng: -80.23088320113261 },
+  LA: { lat: 43.535102086689584, lng: -80.23151100732953 },
+  LAMBTON: { lat: 43.535294998650464, lng: -80.23018765672704 },
+  MACDONALD: { lat: 43.53418741122162, lng: -80.23210598005609 },
+  WARMEM: { lat: 43.532543530441025, lng: -80.2312910963297 },
+  MILLS: { lat: 43.53327126392963, lng: -80.23041598068967 },
+  CREELMAN: { lat: 43.53394647495128, lng: -80.22936668909834 },
+  JOHNSTONHALL: { lat: 43.53296905204246, lng: -80.22867990731886 },
+  REYNOLDS: { lat: 43.5307586268127, lng: -80.22908753004775 },
+  MACLACHLAN: { lat: 43.53121399864506, lng: -80.22867838426788 },
+  CRSC: { lat: 43.53177612740283, lng: -80.22471624071926 },
 };
 
 const ChangeMapView = ({ coords }: { coords: Coordinate }) => {
@@ -71,6 +83,20 @@ const MapPage = () => {
   const [userCoords, setUserCoords] = useState<Coordinate | null>(null);
   const [toCoords, setToCoords] = useState<Coordinate | null>(null);
   const [useLiveLocation, setUseLiveLocation] = useState(false);
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const searchTerm = params.get("search");
+
+  useEffect(() => {
+    if (searchTerm) {
+      const building = searchTerm.toUpperCase();
+      if (building in buildingCoordinates) {
+        setToCoords(buildingCoordinates[building]);
+      } else {
+        alert(`Invalid building name: ${building}`);
+      }
+    }
+  }, []);
 
   const handleRouteChange = (from: string, to: string) => {
     if (from.toLowerCase() === "current location") {
@@ -150,6 +176,18 @@ const MapPage = () => {
           )}
           {toCoords && <Marker position={[toCoords.lat, toCoords.lng]} />}
           {activeCoords && <ChangeMapView coords={activeCoords} />}
+          {Object.entries(buildingCoordinates).map(([name, coords]) => (
+            <Marker
+              key={name}
+              position={[coords.lat, coords.lng]}
+              title={name}
+              opacity={0.8}
+            >
+              <Popup>
+                <strong>{name}</strong>
+              </Popup>
+            </Marker>
+          ))}
         </MapContainer>
       </div>
     </main>
