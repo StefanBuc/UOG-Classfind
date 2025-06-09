@@ -6,11 +6,15 @@ A web application for the University of Guelph campus that allows students to se
 
 ## Todo
 
-- [X] ~~Add a search bar to the map to search for buildings or classrooms.~~
-- [X] ~~Add a feature to show the current location of the user on the map~~.
-- [X] ~~Add a feature to show the route from the user's current location to the selected building or classroom.~~
+- [x] ~~Add a search bar to the map to search for buildings or classrooms.~~
+- [x] ~~Add a feature to show the current location of the user on the map~~.
+- [x] ~~Add a feature to show the route from the user's current location to the selected building or classroom.~~
 - [ ] Add indoor maps of buildings.
 - [ ] Add indoor navigation to the application.
+
+## Screenshots
+<img src="./screenshots/HomepageScreenShot.png" alt="Homepage" width="600"/>
+<img src="./screenshots/MapViewScreenShot.png" alt="Map View" width="600"/>
 
 ## Technologies Used
 
